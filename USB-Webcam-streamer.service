@@ -1,0 +1,13 @@
+[Unit]
+Description=Starts cvlc stream from usb webcam
+After=network-online.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+User=pi
+ExecStart=cvlc -vvv v4l2:///dev/video0:chroma=h264:width=1920:height=1080:fps=30 --sout '#standard{access=http,mux=mp4frag,dst=:8080/stream.mp4}'
+KillSignal=SIGHUP
+Restart=always
+RestartSec=30
