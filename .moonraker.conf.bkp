@@ -1,0 +1,52 @@
+[server]
+host = 0.0.0.0
+port = 7125
+enable_debug_logging = False
+klippy_uds_address = /tmp/klippy_uds
+
+[file_manager]
+config_path = /home/pi/klipper_config
+log_path = /home/pi/klipper_logs
+
+[database]
+database_path = ~/.moonraker_database
+
+[authorization]
+trusted_clients = 
+	10.8.0.0/24
+	127.0.0.1
+	192.168.0.0/16
+	::1/128
+	FE80::/10
+cors_domains = 
+	*.lan
+	*.local
+	*://my.mainsail.xyz
+	*://app.fluidd.xyz
+
+[octoprint_compat]
+
+[history]
+
+[update_manager]
+enable_repo_debug = False
+enable_auto_refresh = False
+
+[update_manager client fluidd]
+type = web
+repo = fluidd-core/fluidd
+path = ~/fluidd
+
+[update_manager client moonraker-telegram-bot]
+type = git_repo
+path = ~/moonraker-telegram-bot
+origin = https://github.com/nlef/moonraker-telegram-bot.git
+primary_branch = development
+env = ~/moonraker-telegram-bot-env/bin/python
+requirements = scripts/requirements.txt
+install_script = scripts/install.sh
+
+[power chamber_led]
+type = klipper_device
+object_name = output_pin chamber_led
+
